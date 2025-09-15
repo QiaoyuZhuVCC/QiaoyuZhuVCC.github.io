@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Qiaoyu Zhu - Personal Homepage</title>
   <style>
-    /* ========= 纸式自适应 ========= */
     body{
       margin:0;
       background:#f2f2f2;
@@ -13,16 +12,15 @@
       line-height:1.6;
       color:#333;
 
-      /* 让 body 高度撑满，方便页脚沉底 */
       min-height:100vh;
       display:flex;
       flex-direction:column;
     }
 
     .paper{
-      flex:1;                           /* 占满剩余高度 */
+      flex:1;                   
       width:230mm;                      
-      min-height:297mm;                 /* 至少 A4 高，内容多可继续伸 */
+      min-height:297mm;          
       margin:20px auto;
       background:#fff;
       box-shadow:0 0 10px rgba(0,0,0,.15);
@@ -30,7 +28,6 @@
       padding:40px;
       box-sizing:border-box;
 
-      /* 打印时恢复标准 A4，去掉阴影 */
       @media print{
         width:210mm;
         min-height:297mm;
@@ -41,7 +38,6 @@
     }
 
 
-    /* ---------- 你原来的样式 ---------- */
     h1{color:#003366;margin-bottom:5px;border-bottom:none;}
     .subtitle{color:#003366;font-size:16px;margin-bottom:15px;}
     h2{color:#003366;margin-top:30px;border-bottom:2px solid #ccc;padding-bottom:3px;}
@@ -50,10 +46,9 @@
     .info{flex:1;}
     .info strong{display:inline-block;margin-right:10px;}
     .profile-photo{margin-left:20px;}
-    .profile-photo img{width:130px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+    .profile-photo img{width:130px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.2);}
     ul{margin:0;padding-left:20px;}
 
-    /* 页脚永远沉在纸最底部 */
     .footer{
       border-top:2px solid #ccc;
       margin-top:30px;
@@ -89,7 +84,7 @@
 
   <h2>Education</h2>
   <ul>
-    <li><strong>2022.09 – Present</strong>, B.Sc. in Information and Computing Science, Shenzhen University, GPA: 3.9/4.5, Ranking: 3/11</li>
+    <li><strong>2022.09 – Present</strong>, B.Sc. in Information and Computing Science (Major) and Computer Science and Technology (Minor), Shenzhen University, GPA: 3.9/4.5, Ranking: 3/11.</li>
   </ul>
 
   <h2>Competitions</h2>
