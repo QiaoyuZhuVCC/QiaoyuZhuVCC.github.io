@@ -20,18 +20,6 @@
     }
 
 
-    :lang(zh), 
-    :lang(zh-CN), 
-    :lang(zh-Hans){
-      font-family:
-        "PingFang SC",
-        "Microsoft YaHei",
-        "Heiti SC",
-        "Noto Sans CJK SC",
-        sans-serif;
-    }
-
-
     .paper{
       flex:1;                   
       width:230mm;                      
@@ -50,6 +38,14 @@
         box-shadow:none;
         border-radius:0;
       }
+    }
+    .chinese-name{
+      font-family:
+        "PingFang SC",
+        "Microsoft YaHei",
+        "Heiti SC",
+        "Noto Sans CJK SC",
+        sans-serif;
     }
 
 
@@ -88,7 +84,11 @@
 
 <div class="paper">  
 
-  <h1>Qiaoyu Zhu 朱乔玉</h1>
+  <h1>
+    Qiaoyu Zhu 
+    <span class="chinese-name">朱乔玉</span>
+  </h1>
+
   <div class="info-container">
     <div class="info">
       <div class="subtitle"><strong>Undergraduate in SZU、Research Intern at VCC</strong></div>
