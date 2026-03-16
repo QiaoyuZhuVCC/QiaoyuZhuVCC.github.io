@@ -20,23 +20,26 @@
     }
 
 
-    .paper{
-      flex:1;                    
-      width:230mm;                      
-      min-height:297mm;            
-      margin:20px auto;
-      background:#fff;
-      box-shadow:0 0 10px rgba(0,0,0,.15);
-      border-radius:4px;
-      padding:40px;
-      box-sizing:border-box;
-
-      @media print{
-        width:210mm;
-        min-height:297mm;
-        margin:0;
-        box-shadow:none;
-        border-radius:0;
+    .paper {
+      flex: 1;                    
+      width: 230mm;                   
+      /* --- 修改处开始 --- */
+      min-height: auto;           /* 将原本的 297mm 改为 auto */
+      height: auto;               /* 确保高度随内容变化 */
+      /* --- 修改处结束 --- */
+      margin: 20px auto;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,.15);
+      border-radius: 4px;
+      padding: 40px;
+      box-sizing: border-box;
+    
+      @media print {
+        width: 210mm;
+        min-height: 297mm;        /* 打印时保留 A4 规格 */
+        margin: 0;
+        box-shadow: none;
+        border-radius: 0;
       }
     }
 
