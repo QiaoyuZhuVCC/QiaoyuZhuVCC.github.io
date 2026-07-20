@@ -123,29 +123,32 @@
       grid-template-rows: repeat(4, 1fr);
     }
     
+    .publication-title,
+    .publication-authors,
+    .publication-venue,
+    .publication-links {
+      display: flex;
+      align-items: center;
+    }
+    
     .publication-title {
       font-size: 18px;
       font-weight: 600;
-      display: flex;
-      align-items: flex-start;
     }
     
     .publication-authors {
-      font-size:16px;
-      display:block;
+      font-size: 16px;
+      line-height: 1.6;
     }
     
     .publication-venue {
       font-size: 16px;
       color: #666;
       font-style: italic;
-      display: flex;
-      align-items: center;
     }
     
     .publication-links {
-      display: flex;
-      align-items: flex-end;
+      font-size: 16px;
     }
     
     .publication-links a {
@@ -155,8 +158,6 @@
     .corresponding-note {
       font-size:16px;
       color:#666;
-      margin-top:10px;
-      margin-bottom:20px;
     }
     a{
         color:#527bbd;
