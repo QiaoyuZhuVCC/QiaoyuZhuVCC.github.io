@@ -120,37 +120,44 @@
       flex:1;
       height:120px;
       display:grid;
-      grid-template-rows:repeat(4,1fr);
+      grid-template-rows:repeat(4, 1fr);
     }
     
+    
     .publication-title,
+    .publication-authors,
     .publication-venue,
     .publication-links {
       display:flex;
       align-items:center;
     }
     
-    .publication-authors {
+    
+    .publication-title,
+    .publication-authors,
+    .publication-venue,
+    .publication-links {
       font-size:16px;
-      line-height:1.6;
-      display:block;
     }
     
     
     .publication-title {
-      font-size:18px;
       font-weight:600;
     }
     
+    
+    .publication-authors {
+      line-height:1.6;
+      display:block;
+      align-self:center;
+    }
+    
+    
     .publication-venue {
-      font-size:16px;
       color:#666;
       font-style:italic;
     }
     
-    .publication-links {
-      font-size:16px;
-    }
     
     .publication-links a {
       margin-right:8px;
