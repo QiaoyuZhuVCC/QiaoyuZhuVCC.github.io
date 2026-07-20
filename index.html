@@ -529,6 +529,7 @@
   <div class="bibtex-dialog">
     <div class="bibtex-header">
       <h3 id="bibtex-title">BibTeX</h3>
+
       <button
         type="button"
         class="bibtex-close"
@@ -560,6 +561,29 @@
   const bibtexButtons = document.querySelectorAll(".bibtex-link");
 
   let lastBibtexTrigger = null;
+  let savedBodyOverflow = "";
+  let savedBodyPaddingRight = "";
+
+  function lockPageScroll() {
+    savedBodyOverflow = document.body.style.overflow;
+    savedBodyPaddingRight = document.body.style.paddingRight;
+
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    const currentPaddingRight =
+      parseFloat(window.getComputedStyle(document.body).paddingRight) || 0;
+
+    document.body.style.paddingRight =
+      currentPaddingRight + scrollbarWidth + "px";
+
+    document.body.style.overflow = "hidden";
+  }
+
+  function unlockPageScroll() {
+    document.body.style.overflow = savedBodyOverflow;
+    document.body.style.paddingRight = savedBodyPaddingRight;
+  }
 
   function openBibtex(button) {
     const bibtexId = button.dataset.bibtexId;
@@ -574,17 +598,20 @@
     bibtexTitle.textContent = paperTitle + " BibTeX";
     bibtexContent.textContent = bibtexSource.textContent.trim();
     copyStatus.textContent = "";
+
+    lockPageScroll();
+
     bibtexModal.classList.add("open");
     bibtexModal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
     bibtexCloseButton.focus();
   }
 
   function closeBibtex() {
     bibtexModal.classList.remove("open");
     bibtexModal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
     copyStatus.textContent = "";
+
+    unlockPageScroll();
 
     if (lastBibtexTrigger) {
       lastBibtexTrigger.focus();
@@ -599,13 +626,16 @@
       copyStatus.textContent = "Copied!";
     } catch {
       const textarea = document.createElement("textarea");
+
       textarea.value = bibtexText;
       textarea.style.position = "fixed";
       textarea.style.opacity = "0";
+
       document.body.appendChild(textarea);
       textarea.select();
       document.execCommand("copy");
       document.body.removeChild(textarea);
+
       copyStatus.textContent = "Copied!";
     }
   }
@@ -626,7 +656,10 @@
   });
 
   document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape" && bibtexModal.classList.contains("open")) {
+    if (
+      event.key === "Escape" &&
+      bibtexModal.classList.contains("open")
+    ) {
       closeBibtex();
     }
   });
