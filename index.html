@@ -5,7 +5,7 @@
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qiaoyu Zhu - Personal Homepage</title>
+  <title>Qiaoyu Zhu</title>
 
   <style>
     body {
@@ -214,6 +214,69 @@
       border-bottom: 1px dashed #999;
     }
 
+    .publication-teaser img {
+      cursor: zoom-in;
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 28px;
+      box-sizing: border-box;
+      background: rgba(0, 0, 0, .78);
+    }
+
+    .image-modal.open {
+      display: flex;
+    }
+
+    .image-modal-dialog {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: min(1200px, 96vw);
+      max-height: 92vh;
+    }
+
+    .image-modal-content {
+      display: block;
+      max-width: 100%;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, .4);
+      cursor: zoom-out;
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      color: #fff;
+      background: rgba(0, 0, 0, .55);
+      border: 1px solid rgba(255, 255, 255, .45);
+      border-radius: 50%;
+      font-family: Arial, sans-serif;
+      font-size: 28px;
+      line-height: 36px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .image-modal-close:hover {
+      background: rgba(0, 0, 0, .75);
+    }
+
     .corresponding-note {
       color: #666;
       font-size: 16px;
@@ -391,7 +454,8 @@
         box-shadow: none;
       }
 
-      .bibtex-modal {
+      .bibtex-modal,
+      .image-modal {
         display: none;
       }
     }
@@ -567,6 +631,25 @@
   </div>
 </div>
 
+<div
+  id="image-modal"
+  class="image-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Publication image preview"
+  aria-hidden="true"
+>
+  <div class="image-modal-dialog">
+    <button
+      type="button"
+      class="image-modal-close"
+      aria-label="Close image preview"
+    >×</button>
+
+    <img id="image-modal-content" class="image-modal-content" src="" alt="">
+  </div>
+</div>
+
 <script>
   const bibtexModal = document.getElementById("bibtex-modal");
   const bibtexTitle = document.getElementById("bibtex-title");
@@ -575,6 +658,10 @@
   const copyButton = document.getElementById("copy-button");
   const copyStatus = document.getElementById("copy-status");
   const bibtexButtons = document.querySelectorAll(".bibtex-link");
+  const publicationImages = document.querySelectorAll(".publication-teaser img");
+  const imageModal = document.getElementById("image-modal");
+  const imageModalContent = document.getElementById("image-modal-content");
+  const imageModalCloseButton = document.querySelector(".image-modal-close");
 
   let lastBibtexTrigger = null;
   let savedBodyOverflow = "";
@@ -634,6 +721,25 @@
     }
   }
 
+  function openImagePreview(image) {
+    imageModalContent.src = image.currentSrc || image.src;
+    imageModalContent.alt = image.alt || "Publication image preview";
+
+    lockPageScroll();
+
+    imageModal.classList.add("open");
+    imageModal.setAttribute("aria-hidden", "false");
+    imageModalCloseButton.focus();
+  }
+
+  function closeImagePreview() {
+    imageModal.classList.remove("open");
+    imageModal.setAttribute("aria-hidden", "true");
+    imageModalContent.src = "";
+
+    unlockPageScroll();
+  }
+
   async function copyBibtex() {
     const bibtexText = bibtexContent.textContent.trim();
 
@@ -662,6 +768,21 @@
     });
   });
 
+  publicationImages.forEach(function(image) {
+    image.addEventListener("click", function() {
+      openImagePreview(image);
+    });
+  });
+
+  imageModalCloseButton.addEventListener("click", closeImagePreview);
+  imageModalContent.addEventListener("click", closeImagePreview);
+
+  imageModal.addEventListener("click", function(event) {
+    if (event.target === imageModal) {
+      closeImagePreview();
+    }
+  });
+
   bibtexCloseButton.addEventListener("click", closeBibtex);
   copyButton.addEventListener("click", copyBibtex);
 
@@ -672,10 +793,16 @@
   });
 
   document.addEventListener("keydown", function(event) {
-    if (
-      event.key === "Escape" &&
-      bibtexModal.classList.contains("open")
-    ) {
+    if (event.key !== "Escape") {
+      return;
+    }
+
+    if (imageModal.classList.contains("open")) {
+      closeImagePreview();
+      return;
+    }
+
+    if (bibtexModal.classList.contains("open")) {
       closeBibtex();
     }
   });
