@@ -153,33 +153,28 @@
 
     .bio-history {
       margin-top: 18px;
+      padding-left: 20px;
     }
 
-    .bio-history-item {
-      display: flex;
-      align-items: flex-start;
+    .bio-history li {
       margin-bottom: 4px;
       font-size: 16px;
       line-height: 1.6;
     }
 
-    .bio-history-item strong {
+    .bio-history-row {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .bio-history-row strong {
       flex: 0 0 145px;
       margin-right: 10px;
       font-weight: 700;
       font-variant-numeric: tabular-nums;
     }
 
-    .bio-date::before {
-      content: "•";
-      display: inline-block;
-      margin-right: 5px;
-      font-size: 10px;
-      line-height: 1;
-      vertical-align: 2px;
-    }
-
-    .bio-history-item span {
+    .bio-history-row span {
       flex: 1;
       min-width: 0;
     }
@@ -499,12 +494,12 @@
       }
 
 
-      .bio-history-item {
+      .bio-history-row {
         flex-direction: column;
         gap: 2px;
       }
 
-      .bio-history-item strong {
+      .bio-history-row strong {
         flex: none;
         margin-right: 0;
       }
@@ -604,26 +599,30 @@
     My research interests primarily focus on computer graphics.
   </p>
 
-  <div class="bio-history">
-    <div class="bio-history-item">
-      <strong class="bio-date">2026.09~Present</strong>
-      <span>
-        Ph.D. Candidate in Computer Science,
-        <a href="https://vcc.tech/" target="_blank">VCC</a>,
-        <a href="https://csse.szu.edu.cn/" target="_blank">CSSE</a>,
-        <a href="https://www.szu.edu.cn/" target="_blank">SZU</a>.
-      </span>
-    </div>
+  <ul class="bio-history">
+    <li>
+      <div class="bio-history-row">
+        <strong>2026.09 ~ Present</strong>
+        <span>
+          Ph.D. Candidate in Computer Science,
+          <a href="https://vcc.tech/" target="_blank">VCC</a>,
+          <a href="https://csse.szu.edu.cn/" target="_blank">CSSE</a>,
+          <a href="https://www.szu.edu.cn/" target="_blank">SZU</a>.
+        </span>
+      </div>
+    </li>
 
-    <div class="bio-history-item">
-      <strong class="bio-date">2022.09~2026.06</strong>
-      <span>
-        B.Sc. in Math, B.Eng. in Computer Science (Minor Degree),
-        <a href="https://math.szu.edu.cn/" target="_blank">SMS</a>,
-        <a href="https://www.szu.edu.cn/" target="_blank">SZU</a>.
-      </span>
-    </div>
-  </div>
+    <li>
+      <div class="bio-history-row">
+        <strong>2022.09 ~ 2026.06</strong>
+        <span>
+          B.Sc. in Math, B.Eng. in Computer Science (Minor Degree),
+          <a href="https://math.szu.edu.cn/" target="_blank">SMS</a>,
+          <a href="https://www.szu.edu.cn/" target="_blank">SZU</a>.
+        </span>
+      </div>
+    </li>
+  </ul>
 
   <h2>Publications</h2>
 
