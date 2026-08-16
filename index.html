@@ -151,6 +151,30 @@
       font-variant-numeric: tabular-nums;
     }
 
+    .bio-history {
+      margin-top: 18px;
+    }
+
+    .bio-history-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 4px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .bio-history-item strong {
+      flex: 0 0 145px;
+      margin-right: 10px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bio-history-item span {
+      flex: 1;
+      min-width: 0;
+    }
+
     .publication-list {
       display: flex;
       flex-direction: column;
@@ -465,6 +489,17 @@
         margin-left: 0;
       }
 
+
+      .bio-history-item {
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .bio-history-item strong {
+        flex: none;
+        margin-right: 0;
+      }
+
       .publication-item {
         flex-direction: column;
         gap: 15px;
@@ -547,30 +582,35 @@
   <h2>Biography</h2>
 
   <p>
-    I am Qiaoyu Zhu, currently a direct-entry Ph.D. student at the
+    I am currently a direct-entry Ph.D. student at the
     <a href="https://vcc.tech/" target="_blank">Visual Computing Research Center (VCC)</a>,
     <a href="https://csse.szu.edu.cn/" target="_blank">College of Computer Science &amp; Software Engineering</a>,
     <a href="https://www.szu.edu.cn/" target="_blank">Shenzhen University</a>,
     under the supervision of
     <a href="https://vcc.tech/~huihuang/home" target="_blank">Prof. Hui Huang</a>.
-    My research is primarily centered around Computer Graphics.
+    I received my B.Sc. degree in Information and Computing Science and a B.Eng. minor degree in Computer Science and Technology from Shenzhen University in 2026.
+    My research interests primarily lie in computer graphics.
   </p>
 
-  <h2>Education</h2>
+  <div class="bio-history">
+    <div class="bio-history-item">
+      <strong>2026–Present</strong>
+      <span>
+        Ph.D. Candidate in Computer Science and Technology,
+        <a href="https://csse.szu.edu.cn/" target="_blank">College of Computer Science &amp; Software Engineering</a>,
+        <a href="https://www.szu.edu.cn/" target="_blank">Shenzhen University</a>.
+      </span>
+    </div>
 
-  <ul>
-    <li>
-      <strong>2026.09 – Present</strong>, Ph.D. Candidate in Computer Science and Technology,
-      <a href="https://csse.szu.edu.cn/" target="_blank">College of Computer Science &amp; Software Engineering</a>,
-      <a href="https://www.szu.edu.cn/" target="_blank">Shenzhen University</a>.
-    </li>
-
-    <li>
-      <strong>2022.09 – 2026.07</strong>, B.Sc. in Information and Computing Science &amp; B.Eng. in Computer Science and Technology (Minor Degree),
-      <a href="https://math.szu.edu.cn/" target="_blank">School of Mathematical Sciences</a>,
-      <a href="https://www.szu.edu.cn/" target="_blank">Shenzhen University</a>.
-    </li>
-  </ul>
+    <div class="bio-history-item">
+      <strong>2022–2026</strong>
+      <span>
+        B.Sc. in Information and Computing Science, B.Eng. in Computer Science and Technology (Minor Degree),
+        <a href="https://math.szu.edu.cn/" target="_blank">School of Mathematical Sciences</a>,
+        <a href="https://www.szu.edu.cn/" target="_blank">Shenzhen University</a>.
+      </span>
+    </div>
+  </div>
 
   <h2>Publications</h2>
 
