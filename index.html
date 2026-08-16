@@ -74,7 +74,33 @@
       color: #527bbd;
       font-size: 16px;
     }
-
+    .profile-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 15px;
+    }
+    
+    .profile-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #527bbd;
+      font-size: 18px;
+      text-decoration: none;
+    }
+    
+    .profile-links img {
+      width: 21px;
+      height: 21px;
+      object-fit: contain;
+    }
+    
+    .profile-links a:hover {
+      border-bottom: none;
+      opacity: 0.75;
+    }
     .info-container {
       display: flex;
       justify-content: space-between;
@@ -473,7 +499,22 @@
       <div class="subtitle">
         <strong>Ph.D. Candidate at <a href="https://www.szu.edu.cn/" target="_blank">SZU</a></strong>
       </div>
-
+      <div class="profile-links">
+        <a href="YOUR_GOOGLE_SCHOLAR_URL" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn.simpleicons.org/googlescholar/527bbd" alt="Google Scholar">
+          <span>Google Scholar</span>
+        </a>
+      
+        <a href="https://orcid.org/YOUR_ORCID_ID" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn.simpleicons.org/orcid/527bbd" alt="ORCID">
+          <span>ORCID</span>
+        </a>
+      
+        <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn.simpleicons.org/github/527bbd" alt="GitHub">
+          <span>GitHub</span>
+        </a>
+      </div>
       <p><strong>E-mail:</strong> qiaoyuzhu.stu@gmail.com</p>
       <p><strong>Tel:</strong> +86-15170627873</p>
       <p><strong>Birth:</strong> July 2004</p>
