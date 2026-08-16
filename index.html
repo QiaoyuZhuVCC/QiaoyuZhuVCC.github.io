@@ -7,6 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Qiaoyu Zhu</title>
 
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  >
+
   <style>
     body {
       margin: 0;
@@ -81,25 +86,33 @@
       gap: 20px;
       margin-bottom: 15px;
     }
-    
+
     .profile-links a {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       color: #527bbd;
       font-size: 16px;
+      font-weight: 700;
       text-decoration: none;
     }
-    
+
+    .profile-links i {
+      width: 16px;
+      font-size: 16px;
+      line-height: 1;
+      text-align: center;
+    }
+
     .profile-links img {
       width: 16px;
       height: 16px;
       object-fit: contain;
     }
-    
+
     .profile-links a:hover {
-      border-bottom: none;
-      opacity: 0.75;
+      border-bottom: 1px dashed #999;
+      text-decoration: none;
     }
     .info-container {
       display: flex;
@@ -500,20 +513,26 @@
         <strong>Ph.D. Candidate at <a href="https://www.szu.edu.cn/" target="_blank">SZU</a></strong>
       </div>
       <div class="profile-links">
-        <a href="YOUR_GOOGLE_SCHOLAR_URL" target="_blank" rel="noopener noreferrer">
-          <i class="fa-solid fa-graduation-cap"></i>
+        <a href="mailto:qiaoyuzhu.stu@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <span>Email</span>
+        </a>
+
+        <a href="https://scholar.google.com/citations?user=Wk7JEtoAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
           <span>Google Scholar</span>
         </a>
+
         <a href="https://orcid.org/YOUR_ORCID_ID" target="_blank" rel="noopener noreferrer">
           <img src="https://cdn.simpleicons.org/orcid/527bbd" alt="ORCID">
           <span>ORCID</span>
         </a>
+
         <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer">
-          <img src="https://cdn.simpleicons.org/github/527bbd" alt="GitHub">
+          <i class="fa fa-github" aria-hidden="true"></i>
           <span>GitHub</span>
         </a>
       </div>
-      <p><strong>E-mail:</strong> qiaoyuzhu.stu@gmail.com</p>
       <p><strong>Tel:</strong> +86-15170627873</p>
       <p><strong>Birth:</strong> July 2004</p>
       <p><strong>Location:</strong> Room 702, Building L6, South Campus of Shenzhen University</p>
