@@ -170,6 +170,15 @@
       font-variant-numeric: tabular-nums;
     }
 
+    .bio-date::before {
+      content: "•";
+      display: inline-block;
+      margin-right: 5px;
+      font-size: 10px;
+      line-height: 1;
+      vertical-align: 2px;
+    }
+
     .bio-history-item span {
       flex: 1;
       min-width: 0;
@@ -594,7 +603,7 @@
 
   <div class="bio-history">
     <div class="bio-history-item">
-      <strong>·2026~Present</strong>
+      <strong class="bio-date">2026~Present</strong>
       <span>
         Ph.D. Candidate in Computer Science and Technology,
         <a href="https://csse.szu.edu.cn/" target="_blank">College of Computer Science &amp; Software Engineering</a>,
@@ -603,7 +612,7 @@
     </div>
 
     <div class="bio-history-item">
-      <strong>·2022~2026</strong>
+      <strong class="bio-date">2022~2026</strong>
       <span>
         B.Sc. in Information and Computing Science, B.Eng. in Computer Science and Technology (Minor Degree),
         <a href="https://math.szu.edu.cn/" target="_blank">School of Mathematical Sciences</a>,
