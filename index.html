@@ -259,6 +259,8 @@
 
     .publication-links a,
     .bibtex-link {
+      position: relative;
+      display: inline-block;
       margin: 0;
       padding: 0;
       color: #527bbd;
@@ -271,15 +273,26 @@
       cursor: pointer;
     }
 
-    .publication-links a:hover {
+    .publication-links a:hover,
+    .bibtex-link:hover {
       border-bottom: none;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
+      text-decoration: none;
     }
 
-    .bibtex-link:hover {
-      border-bottom: 1px dashed #999;
+    .publication-links a::after,
+    .bibtex-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-bottom: 1px dashed transparent;
+      pointer-events: none;
+    }
+
+    .publication-links a:hover::after,
+    .bibtex-link:hover::after {
+      border-bottom-color: #999;
     }
 
     .publication-teaser img {
