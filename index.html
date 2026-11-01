@@ -1,1107 +1,915 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link rel="icon" href="https://qiaoyuzhuvcc.github.io/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="https://qiaoyuzhuvcc.github.io/favicon.ico" type="image/x-icon">
-  <meta charset="UTF-8">
-  <meta name="google-site-verification" content="X2d9JCcGJ6q0pi70DYaezJWZaAKiLxBgMS438h14lR8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qiaoyu Zhu - VCC</title>
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-  >
-
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #f2f2f2;
-      color: #333;
-      font-family: "Candara", sans-serif;
-      line-height: 1.6;
-    }
-
-    button,
-    input,
-    textarea,
-    select {
-      font-family: "Candara", sans-serif;
-    }
-
-    .paper {
-      width: 250mm;
-      height: auto;
-      min-height: auto;
-      margin: 20px auto;
-      padding: 45px;
-      box-sizing: border-box;
-      background: #fff;
-      border-radius: 4px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-    }
-
-    h1 {
-      margin-top: 0;
-      margin-bottom: 5px;
-      color: #527bbd;
-      border-bottom: none;
-    }
-
-    h2 {
-      margin-top: 20px;
-      padding-bottom: 3px;
-      color: #527bbd;
-      border-bottom: 2px solid #ccc;
-    }
-
-    p,
-    li {
-      font-size: 16px;
-    }
-
-    a {
-      color: #527bbd;
-      text-decoration: none;
-      outline: none;
-    }
-
-    a:hover {
-      border-bottom: 1px dashed #999;
-      text-decoration: none;
-      outline: none;
-    }
-
-    .profile-links {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 15px;
-    }
-
-    .profile-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #527bbd;
-      font-size: 16px;
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 1px dashed transparent;
-    }
-
-    .profile-links a:hover {
-      border-bottom-color: #999;
-    }
-
-    .profile-links .profile-icon {
-      display: block;
-      width: 18px;
-      height: 18px;
-      flex: 0 0 18px;
-      object-fit: contain;
-    }
-
-    .profile-links a:hover {
-      border-bottom: 1px dashed #999;
-      text-decoration: none;
-    }
-    .info-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 24px;
-      margin-bottom: 12px;
-    }
-
-    .info {
-      flex: 1;
-    }
-
-    .info strong {
-      display: inline-block;
-      margin-right: 10px;
-    }
-
-    .intro-text {
-      margin: 8px 0 0;
-    }
-
-    .contact-info {
-      margin-top: 18px;
-      margin-bottom: 20px;
-    }
-
-    .contact-info p {
-      margin: 6px 0;
-    }
-
-    .contact-info strong {
-      display: inline-block;
-      margin-right: 10px;
-    }
-
-    .profile-photo {
-      margin-left: 20px;
-      align-self: center;
-    }
-
-    .profile-photo img {
-      width: 130px;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 20px;
-    }
-
-    .date-align li strong:first-child {
-      font-variant-numeric: tabular-nums;
-    }
-
-    .bio-history {
-      margin-top: 18px;
-      padding-left: 20px;
-    }
-
-    .bio-history li {
-      margin-bottom: 4px;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .bio-history-row {
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .bio-history-row strong {
-      flex: 0 0 130px;
-      margin-right: 0;
-      white-space: nowrap;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .bio-history-row span {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .publication-list {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
-
-    .publication-entry {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .publication-item {
-      display: flex;
-      gap: 25px;
-      align-items: flex-start;
-    }
-
-    .publication-teaser {
-      width: 180px;
-      aspect-ratio: 3 / 2;
-      overflow: hidden;
-      flex-shrink: 0;
-      border: 1px solid #eee;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
-    }
-
-    .publication-teaser img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .publication-content {
-      flex: 1;
-      min-width: 0;
-      height: 120px;
-      display: grid;
-      grid-template-rows: repeat(4, 1fr);
-    }
-
-    .publication-title,
-    .publication-venue,
-    .publication-links {
-      display: flex;
-      align-items: center;
-    }
-
-    .publication-title {
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 1.25;
-    }
-
-    .publication-authors {
-      align-self: center;
-      display: block;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .publication-authors strong {
-      color: #000;
-      font-weight: 700;
-      text-decoration: underline;
-      text-decoration-color: #000;
-      text-decoration-thickness: 1.3px;
-      text-underline-offset: 5px;
-    }
-
-    .publication-venue {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 6px;
-      color: #000;
-      font-size: 16px;
-    }
-
-    .publication-venue .venue-text {
-      font-style: italic;
-    }
-
-    .pub-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 20px;
-      padding: 1px 8px;
-      box-sizing: border-box;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 1.35;
-      white-space: nowrap;
-      letter-spacing: .01em;
-    }
-
-    .badge-csrankings {
-      color: #456f9f;
-      background: #edf5ff;
-      border-color: #cfdef0;
-    }
-
-    .badge-ccf-a {
-      color: #6864a0;
-      background: #f1efff;
-      border-color: #dad6f1;
-    }
-
-    .badge-ccf-b {
-      color: #4f7d78;
-      background: #edf8f5;
-      border-color: #cfe7e1;
-    }
-
-    .badge-ccf-c {
-      color: #8a6a54;
-      background: #fff5ec;
-      border-color: #efdccb;
-    }
-
-    .publication-links {
-      gap: 8px;
-      font-size: 16px;
-    }
-
-    .publication-links a,
-    .bibtex-link {
-      position: relative;
-      display: inline-block;
-      margin: 0;
-      padding: 0;
-      color: #527bbd;
-      background: none;
-      border: none;
-      font-family: "Candara", sans-serif;
-      font-size: 16px;
-      line-height: inherit;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .publication-links a:hover,
-    .bibtex-link:hover {
-      border-bottom: none;
-      text-decoration: none;
-    }
-
-    .publication-links a::after,
-    .bibtex-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-bottom: 1px dashed transparent;
-      pointer-events: none;
-    }
-
-    .publication-links a:hover::after,
-    .bibtex-link:hover::after {
-      border-bottom-color: #999;
-    }
-
-    .publication-teaser img {
-      cursor: zoom-in;
-    }
-
-    .image-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 1100;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 28px;
-      box-sizing: border-box;
-      background: rgba(0, 0, 0, .78);
-    }
-
-    .image-modal.open {
-      display: flex;
-    }
-
-    .image-modal-dialog {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: min(1200px, 96vw);
-      max-height: 92vh;
-    }
-
-    .image-modal-content {
-      display: block;
-      max-width: 100%;
-      max-height: 88vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      border-radius: 4px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, .4);
-      cursor: zoom-out;
-    }
-
-    .image-modal-close {
-      position: absolute;
-      top: -18px;
-      right: -18px;
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      color: #fff;
-      background: rgba(0, 0, 0, .55);
-      border: 1px solid rgba(255, 255, 255, .45);
-      border-radius: 50%;
-      font-family: Arial, sans-serif;
-      font-size: 28px;
-      line-height: 36px;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .image-modal-close:hover {
-      background: rgba(0, 0, 0, .75);
-    }
-
-    .corresponding-note {
-      color: #666;
-      font-size: 16px;
-    }
-
-    .bibtex-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
-      background: rgba(0, 0, 0, .45);
-    }
-
-    .bibtex-modal.open {
-      display: flex;
-    }
-
-    .bibtex-dialog {
-      width: min(720px, 100%);
-      max-height: 85vh;
-      overflow: auto;
-      padding: 24px;
-      box-sizing: border-box;
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
-    }
-
-    .bibtex-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 16px;
-    }
-
-    .bibtex-header h3 {
-      margin: 0;
-      color: #527bbd;
-      font-family: "Candara", sans-serif;
-      font-size: 22px;
-      line-height: 1.3;
-    }
-
-    .bibtex-close {
-      flex-shrink: 0;
-      padding: 0;
-      color: #666;
-      background: none;
-      border: none;
-      font-family: "Candara", sans-serif;
-      font-size: 28px;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .bibtex-content {
-      margin: 0;
-      padding: 16px;
-      overflow-x: auto;
-      color: #333;
-      background: #f6f6f6;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-family: "Courier New", monospace;
-      font-size: 14px;
-      line-height: 1.5;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      user-select: text;
-    }
-
-    .bibtex-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .copy-button {
-      padding: 7px 16px;
-      color: #fff;
-      background: #527bbd;
-      border: none;
-      border-radius: 4px;
-      font-family: "Candara", sans-serif;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    .copy-button:hover {
-      background: #416ba8;
-    }
-
-    .copy-status {
-      color: #666;
-      font-family: "Candara", sans-serif;
-      font-size: 14px;
-    }
-
-    .footer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      margin-top: 30px;
-      padding-top: 20px;
-      color: #999;
-      border-top: 2px solid #ccc;
-      font-size: 14px;
-    }
-
-    .footer-text {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      text-align: center;
-    }
-
-    .footer img {
-      width: auto;
-      height: 40px;
-    }
-
-    @media screen and (max-width: 1000px) {
-      .paper {
-        width: calc(100% - 30px);
-        padding: 30px;
+  <head>
+    <link rel="icon" href="https://qiaoyuzhuvcc.github.io/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="X2d9JCcGJ6q0pi70DYaezJWZaAKiLxBgMS438h14lR8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qiaoyu Zhu - VCC</title>
+
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: #f2f2f2;
+        color: #333;
+        font-family: "Candara", sans-serif;
+        line-height: 1.6;
       }
-    }
 
-    @media screen and (max-width: 700px) {
+      button,
+      input,
+      textarea,
+      select {
+        font-family: "Candara", sans-serif;
+      }
+
       .paper {
-        padding: 22px;
+        width: 250mm;
+        margin: 20px auto;
+        padding: 45px;
+        box-sizing: border-box;
+        background: #fff;
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+      }
+
+      h1 {
+        margin-top: 0;
+        margin-bottom: 5px;
+        color: #527bbd;
+      }
+
+      h2 {
+        margin-top: 20px;
+        padding-bottom: 3px;
+        color: #527bbd;
+        border-bottom: 2px solid #ccc;
+      }
+
+      p,
+      li {
+        font-size: 16px;
+      }
+
+      a {
+        color: #527bbd;
+        text-decoration: none;
+        outline: none;
+      }
+
+      a:hover {
+        border-bottom: 1px dashed #999;
+        text-decoration: none;
+        outline: none;
+      }
+
+      .profile-links {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 15px;
+      }
+
+      .profile-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #527bbd;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 1px dashed transparent;
+      }
+
+      .profile-links a:hover {
+        border-bottom-color: #999;
+      }
+
+      .profile-links .profile-icon {
+        display: block;
+        width: 18px;
+        height: 18px;
+        flex: 0 0 18px;
+        object-fit: contain;
       }
 
       .info-container {
-        flex-direction: column-reverse;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+        margin-bottom: 12px;
+      }
+
+      .info {
+        flex: 1;
+      }
+
+      .intro-text {
+        margin: 8px 0 0;
+      }
+
+      .contact-info {
+        margin-top: 18px;
+        margin-bottom: 20px;
+      }
+
+      .contact-info p {
+        margin: 6px 0;
+      }
+
+      .contact-info strong {
+        display: inline-block;
+        margin-right: 10px;
       }
 
       .profile-photo {
-        margin-bottom: 20px;
-        margin-left: 0;
+        margin-left: 20px;
         align-self: center;
       }
 
+      .profile-photo img {
+        width: 130px;
+        border-radius: 4px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .date-align li strong:first-child {
+        font-variant-numeric: tabular-nums;
+      }
+
+      .bio-history {
+        margin-top: 18px;
+        padding-left: 20px;
+      }
+
+      .bio-history li {
+        margin-bottom: 4px;
+      }
 
       .bio-history-row {
-        flex-direction: column;
-        gap: 2px;
+        display: flex;
+        align-items: flex-start;
       }
 
       .bio-history-row strong {
-        flex: none;
+        flex: 0 0 130px;
         margin-right: 0;
+        white-space: nowrap;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
       }
 
-      .publication-item {
+      .bio-history-row span {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .publication-list {
+        display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 25px;
       }
 
-      .publication-teaser {
-        width: 100%;
-        max-width: 300px;
-      }
-
-      .publication-content {
-        width: 100%;
-        height: auto;
+      .publication-entry {
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
 
-      .publication-authors {
-        align-self: stretch;
+      .publication-item {
+        display: flex;
+        gap: 25px;
+        align-items: flex-start;
+      }
+
+      .publication-teaser {
+        width: 180px;
+        aspect-ratio: 3 / 2;
+        overflow: hidden;
+        flex-shrink: 0;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+      }
+
+      .publication-teaser img {
+        display: block;
         width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: zoom-in;
       }
-    }
 
-    @media print {
-      .paper {
-        width: 250mm;
-        min-height: 297mm;
+      .publication-content {
+        flex: 1;
+        min-width: 0;
+        height: 120px;
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+      }
+
+      .publication-title,
+      .publication-venue,
+      .publication-links {
+        display: flex;
+        align-items: center;
+      }
+
+      .publication-title {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+
+      .publication-authors {
+        align-self: center;
+        display: block;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .publication-authors strong {
+        color: #000;
+        font-weight: 700;
+        text-decoration: underline;
+        text-decoration-color: #000;
+        text-decoration-thickness: 1.3px;
+        text-underline-offset: 5px;
+      }
+
+      .publication-venue {
+        flex-wrap: wrap;
+        gap: 6px;
+        color: #000;
+        font-size: 16px;
+      }
+
+      .publication-venue .venue-text {
+        font-style: italic;
+      }
+
+      .pub-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 20px;
+        padding: 1px 8px;
+        box-sizing: border-box;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.35;
+        white-space: nowrap;
+        letter-spacing: .01em;
+      }
+
+      .badge-csrankings {
+        color: #456f9f;
+        background: #edf5ff;
+        border-color: #cfdef0;
+      }
+
+      .badge-ccf-c {
+        color: #8a6a54;
+        background: #fff5ec;
+        border-color: #efdccb;
+      }
+
+      .publication-links {
+        gap: 8px;
+        font-size: 16px;
+      }
+
+      .publication-links a,
+      .bibtex-link {
+        position: relative;
+        display: inline-block;
         margin: 0;
-        border-radius: 0;
-        box-shadow: none;
+        padding: 0;
+        color: #527bbd;
+        background: none;
+        border: none;
+        font-size: 16px;
+        line-height: inherit;
+        text-decoration: none;
+        cursor: pointer;
       }
 
-      .bibtex-modal,
-      .image-modal {
+      .publication-links a:hover,
+      .bibtex-link:hover {
+        border-bottom: none;
+      }
+
+      .publication-links a::after,
+      .bibtex-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-bottom: 1px dashed transparent;
+        pointer-events: none;
+      }
+
+      .publication-links a:hover::after,
+      .bibtex-link:hover::after {
+        border-bottom-color: #999;
+      }
+
+      .image-modal,
+      .bibtex-modal {
+        position: fixed;
+        inset: 0;
         display: none;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
       }
-    }
-  </style>
-</head>
 
-<body>
+      .image-modal.open,
+      .bibtex-modal.open {
+        display: flex;
+      }
 
-<div class="paper">
-  <div class="info-container">
+      .image-modal {
+        z-index: 1100;
+        padding: 28px;
+        background: rgba(0, 0, 0, .78);
+      }
 
-    <div class="info">
-      <h1>Qiaoyu Zhu</h1>
+      .image-modal-dialog {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: min(1200px, 96vw);
+        max-height: 92vh;
+      }
 
-      <div class="profile-links">
-      <a
-        href="https://scholar.google.com/citations?user=FgDFF4cAAAAJ&hl=en"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          class="profile-icon"
-          src="https://api.iconify.design/bi/mortarboard-fill.svg?color=%23527bbd"
-          alt=""
-          aria-hidden="true"
-        >
-        <span>Google Scholar</span>
-      </a>
+      .image-modal-content {
+        display: block;
+        max-width: 100%;
+        max-height: 88vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 4px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, .4);
+        cursor: zoom-out;
+      }
 
-      <a
-        href="https://dblp.org/pid/445/6239.html"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          class="profile-icon"
-          src="https://api.iconify.design/simple-icons/dblp.svg?color=%23527bbd"
-          alt=""
-          aria-hidden="true"
-        >
-        <span>DBLP</span>
-      </a>
+      .image-modal-close {
+        position: absolute;
+        top: -18px;
+        right: -18px;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        color: #fff;
+        background: rgba(0, 0, 0, .55);
+        border: 1px solid rgba(255, 255, 255, .45);
+        border-radius: 50%;
+        font-family: Arial, sans-serif;
+        font-size: 28px;
+        line-height: 36px;
+        text-align: center;
+        cursor: pointer;
+      }
 
-      <a
-        href="https://orcid.org/0009-0000-4431-9927"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          class="profile-icon"
-          src="https://api.iconify.design/simple-icons/orcid.svg?color=%23527bbd"
-          alt=""
-          aria-hidden="true"
-        >
-        <span>ORCID</span>
-      </a>
+      .image-modal-close:hover {
+        background: rgba(0, 0, 0, .75);
+      }
 
-      <a
-        href="https://github.com/QiaoyuZhuVCC"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          class="profile-icon"
-          src="https://api.iconify.design/bi/github.svg?color=%23527bbd"
-          alt=""
-          aria-hidden="true"
-        >
-        <span>GitHub</span>
-      </a>
-      </div>
+      .corresponding-note {
+        color: #666;
+        font-size: 16px;
+      }
 
-      <p class="intro-text">
-        I am currently a direct-entry Ph.D. student at the
-        <a href="https://vcc.tech/" target="_blank">Visual Computing Research Center (VCC)</a>,
-        <a href="https://csse.szu.edu.cn/en" target="_blank">College of Computer Science &amp; Software Engineering (CSSE)</a>,
-        <a href="https://en.szu.edu.cn/" target="_blank">Shenzhen University (SZU)</a>,
-        under the supervision of
-        <a href="https://vcc.tech/~huihuang/home" target="_blank">Prof. Hui Huang</a>.
-        I received my B.Sc. in Information and Computing Science and B.Eng. (Minor) in Computer Science from the
-        <a href="https://math.szu.edu.cn/en/" target="_blank">School of Mathematical Sciences (SMS)</a>,
-        <a href="https://en.szu.edu.cn/" target="_blank">SZU</a>,
-        in 2026.
-        My research interests primarily lie in computer graphics.
-      </p>
-    </div>
+      .bibtex-modal {
+        z-index: 1000;
+        padding: 20px;
+        background: rgba(0, 0, 0, .45);
+      }
 
-    <div class="profile-photo">
-      <img src="https://qiaoyuzhuvcc.github.io/photo.png" alt="Profile Photo">
-    </div>
+      .bibtex-dialog {
+        width: min(720px, 100%);
+        max-height: 85vh;
+        overflow: auto;
+        padding: 24px;
+        box-sizing: border-box;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
+      }
 
-  </div>
+      .bibtex-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 16px;
+      }
 
-  <ul class="bio-history">
-    <li>
-      <div class="bio-history-row">
-        <strong>2026.09 - Present</strong>
-        <span>
-          Ph.D. student in Computer Science,
-          <a href="https://vcc.tech/" target="_blank">VCC</a>,
-          <a href="https://csse.szu.edu.cn/en" target="_blank">CSSE</a>,
-          <a href="https://en.szu.edu.cn/" target="_blank">SZU</a>.
-        </span>
-      </div>
-    </li>
+      .bibtex-header h3 {
+        margin: 0;
+        color: #527bbd;
+        font-size: 22px;
+        line-height: 1.3;
+      }
 
-    <li>
-      <div class="bio-history-row">
-        <strong>2022.09 - 2026.06</strong>
-        <span>
-          B.Sc. in Information and Computing Science & B.Eng. (Minor) in Computer Science,
-          <a href="https://math.szu.edu.cn/en/" target="_blank">SMS</a>,
-          <a href="https://en.szu.edu.cn/" target="_blank">SZU</a>.
-        </span>
-      </div>
-    </li>
-  </ul>
+      .bibtex-close {
+        flex-shrink: 0;
+        padding: 0;
+        color: #666;
+        background: none;
+        border: none;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+      }
 
-  <div class="contact-info">
-    <!-- <p><strong>Tel:</strong> +86-15170627873</p> -->
-    <p>
-      <strong>E-mail:</strong>
-      <a href="mailto:qiaoyuzhu.stu@gmail.com" style="color: inherit; text-decoration: none;">qiaoyuzhu.stu@gmail.com</a>,
-      <a href="mailto:zhuqiaoyu2026@mails.szu.edu.cn" style="color: inherit; text-decoration: none;">zhuqiaoyu2026@mails.szu.edu.cn</a>
-    </p>
-    <p>
-      <strong>Location:</strong>
-      <a href="https://www.google.com/maps?q=22.5294722,113.9409722&hl=en" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Room 702, Zhizhen Building (L6), Canghai Campus, Shenzhen University, China</a>
-    </p>
-  </div>
+      .bibtex-content {
+        margin: 0;
+        padding: 16px;
+        overflow-x: auto;
+        color: #333;
+        background: #f6f6f6;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        user-select: text;
+      }
 
-  <h2>Publications</h2>
+      .bibtex-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 16px;
+      }
 
-  <div class="publication-list">
+      .copy-button {
+        padding: 7px 16px;
+        color: #fff;
+        background: #527bbd;
+        border: none;
+        border-radius: 4px;
+        font-size: 15px;
+        cursor: pointer;
+      }
 
-    <div class="publication-entry">
-      <div class="publication-item">
+      .copy-button:hover {
+        background: #416ba8;
+      }
 
-        <div class="publication-teaser">
-          <img
-            src="https://qiaoyuzhuvcc.github.io/Rep/BSVC_Rep.png"
-            alt="Balanced Supervoxel Clustering paper teaser"
-          >
+      .copy-status {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-top: 30px;
+        padding-top: 20px;
+        color: #999;
+        border-top: 2px solid #ccc;
+        font-size: 14px;
+      }
+
+      .footer-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        text-align: center;
+      }
+
+      .footer img {
+        height: 40px;
+      }
+
+      @media screen and (max-width: 1000px) {
+        .paper {
+          width: calc(100% - 30px);
+          padding: 30px;
+        }
+      }
+
+      @media screen and (max-width: 700px) {
+        .paper {
+          padding: 22px;
+        }
+
+        .info-container {
+          flex-direction: column-reverse;
+        }
+
+        .profile-photo {
+          margin-bottom: 20px;
+          margin-left: 0;
+          align-self: center;
+        }
+
+        .bio-history-row {
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .bio-history-row strong {
+          flex: none;
+          margin-right: 0;
+        }
+
+        .publication-item {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .publication-teaser {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .publication-content {
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .publication-authors {
+          align-self: stretch;
+          width: 100%;
+        }
+      }
+
+      @media print {
+        .paper {
+          width: 250mm;
+          min-height: 297mm;
+          margin: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        .bibtex-modal,
+        .image-modal {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="paper">
+      <div class="info-container">
+        <div class="info">
+          <h1>Qiaoyu Zhu</h1>
+
+          <div class="profile-links">
+            <a href="https://scholar.google.com/citations?user=FgDFF4cAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+              <img class="profile-icon" src="https://api.iconify.design/bi/mortarboard-fill.svg?color=%23527bbd" alt="" aria-hidden="true">
+              <span>Google Scholar</span>
+            </a>
+
+            <a href="https://dblp.org/pid/445/6239.html" target="_blank" rel="noopener noreferrer">
+              <img class="profile-icon" src="https://api.iconify.design/simple-icons/dblp.svg?color=%23527bbd" alt="" aria-hidden="true">
+              <span>DBLP</span>
+            </a>
+
+            <a href="https://orcid.org/0009-0000-4431-9927" target="_blank" rel="noopener noreferrer">
+              <img class="profile-icon" src="https://api.iconify.design/simple-icons/orcid.svg?color=%23527bbd" alt="" aria-hidden="true">
+              <span>ORCID</span>
+            </a>
+
+            <a href="https://github.com/QiaoyuZhuVCC" target="_blank" rel="noopener noreferrer">
+              <img class="profile-icon" src="https://api.iconify.design/bi/github.svg?color=%23527bbd" alt="" aria-hidden="true">
+              <span>GitHub</span>
+            </a>
+          </div>
+
+          <p class="intro-text">
+            I am currently a direct-entry Ph.D. student at the
+            <a href="https://vcc.tech/" target="_blank">Visual Computing Research Center (VCC)</a>,
+            <a href="https://csse.szu.edu.cn/en" target="_blank">College of Computer Science &amp; Software Engineering (CSSE)</a>,
+            <a href="https://en.szu.edu.cn/" target="_blank">Shenzhen University (SZU)</a>,
+            under the supervision of
+            <a href="https://vcc.tech/~huihuang/home" target="_blank">Prof. Hui Huang</a>.
+            I received my B.Sc. in Information and Computing Science and B.Eng. (Minor) in Computer Science from the
+            <a href="https://math.szu.edu.cn/en/" target="_blank">School of Mathematical Sciences (SMS)</a>,
+            <a href="https://en.szu.edu.cn/" target="_blank">SZU</a>,
+            in 2026.
+            My research interests primarily lie in computer graphics.
+          </p>
         </div>
 
-        <div class="publication-content">
+        <div class="profile-photo">
+          <img src="https://qiaoyuzhuvcc.github.io/photo.png" alt="Profile Photo">
+        </div>
+      </div>
 
-          <div class="publication-title">
-            Balanced Supervoxel Clustering for Large-Scale Urban Meshes
+      <ul class="bio-history">
+        <li>
+          <div class="bio-history-row">
+            <strong>2026.09 - Present</strong>
+            <span>
+              Ph.D. student in Computer Science,
+              <a href="https://vcc.tech/" target="_blank">VCC</a>,
+              <a href="https://csse.szu.edu.cn/en" target="_blank">CSSE</a>,
+              <a href="https://en.szu.edu.cn/" target="_blank">SZU</a>.
+            </span>
           </div>
+        </li>
 
-          <div class="publication-authors">
-            <strong>Qiaoyu Zhu</strong>,
-            <a
-              href="https://guoqingyang2022.github.io/"
-              target="_blank"
-            >Guoqing Yang</a>,
-            <a
-              href="https://vcc.tech/~huihuang/home"
-              target="_blank"
-            >Hui Huang</a>*
+        <li>
+          <div class="bio-history-row">
+            <strong>2022.09 - 2026.06</strong>
+            <span>
+              B.Sc. in Information and Computing Science & B.Eng. (Minor) in Computer Science,
+              <a href="https://math.szu.edu.cn/en/" target="_blank">SMS</a>,
+              <a href="https://en.szu.edu.cn/" target="_blank">SZU</a>.
+            </span>
           </div>
+        </li>
+      </ul>
 
-          <div class="publication-venue">
-            <span class="pub-badge badge-ccf-c">CCF-C</span>
-            <span class="venue-text">CAD/Graphics 2026 (Conditionally Accepted, IEEE TVCG Under Review)</span>
-          </div>
+      <div class="contact-info">
+        <p>
+          <strong>E-mail:</strong>
+          <a href="mailto:qiaoyuzhu.stu@gmail.com" style="color: inherit; text-decoration: none;">qiaoyuzhu.stu@gmail.com</a>,
+          <a href="mailto:zhuqiaoyu2026@mails.szu.edu.cn" style="color: inherit; text-decoration: none;">zhuqiaoyu2026@mails.szu.edu.cn</a>
+        </p>
+        <p>
+          <strong>Location:</strong>
+          <a href="https://www.google.com/maps?q=22.5294722,113.9409722&hl=en" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Room 702, Zhizhen Building (L6), Canghai Campus, Shenzhen University, China</a>
+        </p>
+      </div>
 
-          <div class="publication-links">
+      <h2>Publications</h2>
 
-            <a href="https://qiaoyuzhuvcc.github.io/">[Paper]</a>
-            <!-- <button
+      <div class="publication-list">
+        <div class="publication-entry">
+          <div class="publication-item">
+            <div class="publication-teaser">
+              <img src="https://qiaoyuzhuvcc.github.io/Rep/BSVC_Rep.png" alt="Balanced Supervoxel Clustering paper teaser">
+            </div>
+
+            <div class="publication-content">
+              <div class="publication-title">
+                Balanced Supervoxel Clustering for Large-Scale Urban Meshes
+              </div>
+
+              <div class="publication-authors">
+                <strong>Qiaoyu Zhu</strong>,
+                <a href="https://guoqingyang2022.github.io/" target="_blank">Guoqing Yang</a>,
+                <a href="https://vcc.tech/~huihuang/home" target="_blank">Hui Huang</a>*
+              </div>
+
+              <div class="publication-venue">
+                <span class="pub-badge badge-ccf-c">CCF-C</span>
+                <span class="venue-text">CAD/Graphics 2026 (Conditionally Accepted, IEEE TVCG Under Review)</span>
+              </div>
+
+              <div class="publication-links">
+                <a href="https://qiaoyuzhuvcc.github.io/">[Paper]</a>
+                <!-- <button
               type="button"
               class="bibtex-link"
               data-bibtex-id="bibtex-BalancedSupervoxel"
               data-paper-title="Balanced Supervoxel Clustering"
             >[Bibtex]</button> -->
-
+              </div>
+            </div>
           </div>
 
-        </div>
-      </div>
-
-      <!-- <pre id="bibtex-BalancedSupervoxel" hidden>@inproceedings{BSVC26,
+          <!-- <pre id="bibtex-BalancedSupervoxel" hidden>@inproceedings{BSVC26,
     title = {Balanced Supervoxel Clustering for Large-Scale Urban Meshes},
     author = {Qiaoyu Zhu and Guoqing Yang and Hui Huang},
     booktitle = {International Conference on Computer-Aided Design and Computer Graphics},
     pages = {},
     year = {2026}
 }</pre> -->
-
-    </div>
-
-
-    <div class="publication-entry">
-      <div class="publication-item">
-        <div class="publication-teaser">
-          <img src="https://qiaoyuzhuvcc.github.io/Rep/SiZeUp_Rep.jpg" alt="SiZeUp paper teaser">
         </div>
 
-        <div class="publication-content">
-          <div class="publication-title">
-            SiZeUp: Fast 3D Proxy from Aerial Images via Depth Ordinal Loss
+        <div class="publication-entry">
+          <div class="publication-item">
+            <div class="publication-teaser">
+              <img src="https://qiaoyuzhuvcc.github.io/Rep/SiZeUp_Rep.jpg" alt="SiZeUp paper teaser">
+            </div>
+
+            <div class="publication-content">
+              <div class="publication-title">
+                SiZeUp: Fast 3D Proxy from Aerial Images via Depth Ordinal Loss
+              </div>
+
+              <div class="publication-authors">
+                Wenjun Zhou, Yunshan Li, <strong>Qiaoyu Zhu</strong>, <a href="https://dianaxiong.github.io/" target="_blank">Weidan Xiong</a>, <a href="https://www.cs.sfu.ca/~haoz/" target="_blank">Hao Zhang</a>, <a href="https://danielcohenor.com/" target="_blank">Daniel Cohen-Or</a>, <a href="https://vcc.tech/~huihuang/home" target="_blank">Hui Huang</a>*
+              </div>
+
+              <div class="publication-venue">
+                <span class="pub-badge badge-csrankings">CSRankings</span>
+                <span class="venue-text">ACM SIGGRAPH Asia 2026</span>
+              </div>
+
+              <div class="publication-links">
+                <a href="https://vcc.tech/research/2026/SiZeUp" target="_blank">[Project Page]</a>
+                <a href="https://arxiv.org/pdf/2608.22821" target="_blank">[Paper]</a>
+                <button type="button" class="bibtex-link" data-bibtex-id="bibtex-SiZeUp" data-paper-title="SiZeUp">[Bibtex]</button>
+              </div>
+            </div>
           </div>
 
-          <div class="publication-authors">
-            Wenjun Zhou, Yunshan Li, <strong>Qiaoyu Zhu</strong>, <a href="https://dianaxiong.github.io/" target="_blank">Weidan Xiong</a>, <a href="https://www.cs.sfu.ca/~haoz/" target="_blank">Hao Zhang</a>, <a href="https://danielcohenor.com/" target="_blank">Daniel Cohen-Or</a>, <a href="https://vcc.tech/~huihuang/home" target="_blank">Hui Huang</a>*
-          </div>
-
-          <div class="publication-venue">
-            <span class="pub-badge badge-csrankings">CSRankings</span>
-            <span class="venue-text">ACM SIGGRAPH Asia 2026</span>
-          </div>
-
-          <div class="publication-links">
-            <a href="https://vcc.tech/research/2026/SiZeUp" target="_blank">[Project Page]</a>
-            <a href="https://arxiv.org/pdf/2608.22821" target="_blank">[Paper]</a>
-            <button
-              type="button"
-              class="bibtex-link"
-              data-bibtex-id="bibtex-SiZeUp"
-              data-paper-title="SiZeUp"
-            >[Bibtex]</button>
-          </div>
-        </div>
-      </div>
-
-      <pre id="bibtex-SiZeUp" hidden>@inproceedings{SiZeUp26,
+          <pre id="bibtex-SiZeUp" hidden>@inproceedings{SiZeUp26,
     title = {SiZeUp: Fast 3D Proxy from Aerial Images via Depth Ordinal Loss},
     author = {Wenjun Zhou and Yunshan Li and Qiaoyu Zhu and Weidan Xiong and Hao Zhang and Daniel Cohen-Or and Hui Huang},
     booktitle = {ACM SIGGRAPH Asia},
     pages = {},
     year = {2026}
 }</pre>
+        </div>
+
+        <div class="corresponding-note">
+          * Corresponding author.
+        </div>
+      </div>
+
+      <h2>Honors &amp; Awards</h2>
+
+      <ul class="date-align">
+        <li>Shenzhen University Scholarship for Outstanding and Innovative Doctoral Students, <strong>First Prize, CNY 37,000</strong></li>
+        <li>Shenzhen University Doctoral Academic Scholarship, <strong>CNY 20,000</strong></li>
+        <li>Shenzhen University 2025-2026 "Star of Double Innovations (Group)", <strong>First Prize, CNY 3,000</strong></li>
+        <li>Shenzhen University Honors Bachelor's Degree, Class of 2026, <strong>Top 3% of Graduates</strong></li>
+        <li>Shenzhen University Outstanding Graduate, Class of 2026, <strong>Top 5% of Graduates</strong></li>
+        <li>Shenzhen University Integrated Bachelor's–Doctoral Innovative Talent Program Scholarship, <strong>CNY 30,000</strong></li>
+        <li>Shenzhen University 2024-2025 "Star of Double Innovations (Group)", <strong>Second Prize, CNY 2,000</strong></li>
+        <li>Shenzhen University 2024-2025 "Star of Double Innovations (Individual)", <strong>Second Prize, CNY 2,000</strong></li>
+        <li>2025 RAICOM Robotics Developer Competition (AI Vision Application Track),  <strong>First Prize, National Finals</strong></li>
+        <li>2025 RAICOM Robotics Developer Competition (Programming Skills Track), <strong>Second Prize, National Finals</strong></li>
+        <li>16th Blue Bridge Cup (C/C++ Programming, Undergraduate Group B) – <strong>First Prize, Guangdong Division</strong></li>
+      </ul>
+
+      <div class="footer">
+        <img src="https://qiaoyuzhuvcc.github.io/Logo/vcc.png" alt="VCC Logo">
+
+        <div class="footer-text">
+          <div>© Qiaoyu Zhu. Visual Computing Research Center</div>
+          <div>Shenzhen University, China</div>
+        </div>
+
+        <img src="https://qiaoyuzhuvcc.github.io/Logo/szu.png" alt="SZU Logo">
+      </div>
     </div>
 
-    <div class="corresponding-note">
-      * Corresponding author.
+    <div id="bibtex-modal" class="bibtex-modal" role="dialog" aria-modal="true" aria-labelledby="bibtex-title" aria-hidden="true">
+      <div class="bibtex-dialog">
+        <div class="bibtex-header">
+          <h3 id="bibtex-title">BibTeX</h3>
+
+          <button type="button" class="bibtex-close" aria-label="Close">×</button>
+        </div>
+
+        <pre id="bibtex-content" class="bibtex-content"></pre>
+
+        <div class="bibtex-actions">
+          <button id="copy-button" type="button" class="copy-button">Copy Bibtex</button>
+
+          <span id="copy-status" class="copy-status"></span>
+        </div>
+      </div>
     </div>
 
-  </div>
+    <div id="image-modal" class="image-modal" role="dialog" aria-modal="true" aria-label="Publication image preview" aria-hidden="true">
+      <div class="image-modal-dialog">
+        <button type="button" class="image-modal-close" aria-label="Close image preview">×</button>
 
-  <h2>Honors &amp; Awards</h2>
-
-  <ul class="date-align">
-    <li>Shenzhen University Scholarship for Outstanding and Innovative Doctoral Students, <strong>First Prize, CNY 37,000</strong></li>
-    <li>Shenzhen University Doctoral Academic Scholarship, <strong>CNY 20,000</strong></li>
-    <li>Shenzhen University 2025-2026 "Star of Double Innovations (Group)", <strong>First Prize, CNY 3,000</strong></li>
-    <li>Shenzhen University Honors Bachelor's Degree, Class of 2026, <strong>Top 3% of Graduates</strong></li>
-    <li>Shenzhen University Outstanding Graduate, Class of 2026, <strong>Top 5% of Graduates</strong></li>
-    <li>Shenzhen University Integrated Bachelor's–Doctoral Innovative Talent Program Scholarship, <strong>CNY 30,000</strong></li>
-    <li>Shenzhen University 2024-2025 "Star of Double Innovations (Group)", <strong>Second Prize, CNY 2,000</strong></li>
-    <li>Shenzhen University 2024-2025 "Star of Double Innovations (Individual)", <strong>Second Prize, CNY 2,000</strong></li>
-    <li>2025 RAICOM Robotics Developer Competition (AI Vision Application Track),  <strong>First Prize, National Finals</strong></li>
-    <li>2025 RAICOM Robotics Developer Competition (Programming Skills Track), <strong>Second Prize, National Finals</strong></li>
-    <li>16th Blue Bridge Cup (C/C++ Programming, Undergraduate Group B) – <strong>First Prize, Guangdong Division</strong></li>
-  </ul>
-
-  <div class="footer">
-    <img src="https://qiaoyuzhuvcc.github.io/Logo/vcc.png" alt="VCC Logo">
-
-    <div class="footer-text">
-      <div>© Qiaoyu Zhu. Visual Computing Research Center</div>
-      <div>Shenzhen University, China</div>
+        <img id="image-modal-content" class="image-modal-content" src="" alt="">
+      </div>
     </div>
 
-    <img src="https://qiaoyuzhuvcc.github.io/Logo/szu.png" alt="SZU Logo">
-  </div>
+    <script>
+      const bibtexModal = document.getElementById("bibtex-modal");
+      const bibtexTitle = document.getElementById("bibtex-title");
+      const bibtexContent = document.getElementById("bibtex-content");
+      const bibtexCloseButton = document.querySelector(".bibtex-close");
+      const copyStatus = document.getElementById("copy-status");
+      const imageModal = document.getElementById("image-modal");
+      const imageModalContent = document.getElementById("image-modal-content");
+      const imageModalCloseButton = document.querySelector(".image-modal-close");
 
-</div>
+      let lastBibtexTrigger = null;
+      let savedBodyOverflow = "";
+      let savedBodyPaddingRight = "";
 
-<div
-  id="bibtex-modal"
-  class="bibtex-modal"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="bibtex-title"
-  aria-hidden="true"
->
-  <div class="bibtex-dialog">
-    <div class="bibtex-header">
-      <h3 id="bibtex-title">BibTeX</h3>
+      function lockPageScroll() {
+        const style = document.body.style;
+        savedBodyOverflow = style.overflow;
+        savedBodyPaddingRight = style.paddingRight;
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        const paddingRight = parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+        style.paddingRight = `${paddingRight + scrollbarWidth}px`;
+        style.overflow = "hidden";
+      }
 
-      <button
-        type="button"
-        class="bibtex-close"
-        aria-label="Close"
-      >×</button>
-    </div>
+      function unlockPageScroll() {
+        document.body.style.overflow = savedBodyOverflow;
+        document.body.style.paddingRight = savedBodyPaddingRight;
+      }
 
-    <pre id="bibtex-content" class="bibtex-content"></pre>
+      function setModalOpen(modal, open) {
+        if (open) lockPageScroll();
+        modal.classList.toggle("open", open);
+        modal.setAttribute("aria-hidden", String(!open));
+        if (!open) unlockPageScroll();
+      }
 
-    <div class="bibtex-actions">
-      <button
-        id="copy-button"
-        type="button"
-        class="copy-button"
-      >Copy Bibtex</button>
+      function openBibtex(button) {
+        const source = document.getElementById(button.dataset.bibtexId);
+        if (!source) return;
+        lastBibtexTrigger = button;
+        bibtexTitle.textContent = button.dataset.paperTitle + " Bibtex";
+        bibtexContent.textContent = source.textContent.trim();
+        copyStatus.textContent = "";
+        setModalOpen(bibtexModal, true);
+        bibtexCloseButton.focus();
+      }
 
-      <span id="copy-status" class="copy-status"></span>
-    </div>
-  </div>
-</div>
+      function closeBibtex() {
+        setModalOpen(bibtexModal, false);
+        copyStatus.textContent = "";
+        if (lastBibtexTrigger) lastBibtexTrigger.focus();
+      }
 
-<div
-  id="image-modal"
-  class="image-modal"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Publication image preview"
-  aria-hidden="true"
->
-  <div class="image-modal-dialog">
-    <button
-      type="button"
-      class="image-modal-close"
-      aria-label="Close image preview"
-    >×</button>
+      function openImagePreview(image) {
+        imageModalContent.src = image.currentSrc || image.src;
+        imageModalContent.alt = image.alt || "Publication image preview";
+        setModalOpen(imageModal, true);
+        imageModalCloseButton.focus();
+      }
 
-    <img id="image-modal-content" class="image-modal-content" src="" alt="">
-  </div>
-</div>
+      function closeImagePreview() {
+        setModalOpen(imageModal, false);
+        imageModalContent.src = "";
+      }
 
-<script>
-  const bibtexModal = document.getElementById("bibtex-modal");
-  const bibtexTitle = document.getElementById("bibtex-title");
-  const bibtexContent = document.getElementById("bibtex-content");
-  const bibtexCloseButton = document.querySelector(".bibtex-close");
-  const copyButton = document.getElementById("copy-button");
-  const copyStatus = document.getElementById("copy-status");
-  const bibtexButtons = document.querySelectorAll(".bibtex-link");
-  const publicationImages = document.querySelectorAll(".publication-teaser img");
-  const imageModal = document.getElementById("image-modal");
-  const imageModalContent = document.getElementById("image-modal-content");
-  const imageModalCloseButton = document.querySelector(".image-modal-close");
+      async function copyBibtex() {
+        const text = bibtexContent.textContent.trim();
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          textarea.remove();
+        }
+        copyStatus.textContent = "Copied!";
+      }
 
-  let lastBibtexTrigger = null;
-  let savedBodyOverflow = "";
-  let savedBodyPaddingRight = "";
+      document.querySelectorAll(".bibtex-link").forEach(button =>
+        button.addEventListener("click", () => openBibtex(button))
+      );
+      document.querySelectorAll(".publication-teaser img").forEach(image =>
+        image.addEventListener("click", () => openImagePreview(image))
+      );
 
-  function lockPageScroll() {
-    savedBodyOverflow = document.body.style.overflow;
-    savedBodyPaddingRight = document.body.style.paddingRight;
+      bibtexCloseButton.addEventListener("click", closeBibtex);
+      document.getElementById("copy-button").addEventListener("click", copyBibtex);
+      imageModalCloseButton.addEventListener("click", closeImagePreview);
+      imageModalContent.addEventListener("click", closeImagePreview);
 
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
+      [[bibtexModal, closeBibtex], [imageModal, closeImagePreview]].forEach(([modal, close]) => {
+        modal.addEventListener("click", event => {
+          if (event.target === modal) close();
+        });
+      });
 
-    const currentPaddingRight =
-      parseFloat(window.getComputedStyle(document.body).paddingRight) || 0;
-
-    document.body.style.paddingRight =
-      currentPaddingRight + scrollbarWidth + "px";
-
-    document.body.style.overflow = "hidden";
-  }
-
-  function unlockPageScroll() {
-    document.body.style.overflow = savedBodyOverflow;
-    document.body.style.paddingRight = savedBodyPaddingRight;
-  }
-
-  function openBibtex(button) {
-    const bibtexId = button.dataset.bibtexId;
-    const paperTitle = button.dataset.paperTitle;
-    const bibtexSource = document.getElementById(bibtexId);
-
-    if (!bibtexSource) {
-      return;
-    }
-
-    lastBibtexTrigger = button;
-    bibtexTitle.textContent = paperTitle + " Bibtex";
-    bibtexContent.textContent = bibtexSource.textContent.trim();
-    copyStatus.textContent = "";
-
-    lockPageScroll();
-
-    bibtexModal.classList.add("open");
-    bibtexModal.setAttribute("aria-hidden", "false");
-    bibtexCloseButton.focus();
-  }
-
-  function closeBibtex() {
-    bibtexModal.classList.remove("open");
-    bibtexModal.setAttribute("aria-hidden", "true");
-    copyStatus.textContent = "";
-
-    unlockPageScroll();
-
-    if (lastBibtexTrigger) {
-      lastBibtexTrigger.focus();
-    }
-  }
-
-  function openImagePreview(image) {
-    imageModalContent.src = image.currentSrc || image.src;
-    imageModalContent.alt = image.alt || "Publication image preview";
-
-    lockPageScroll();
-
-    imageModal.classList.add("open");
-    imageModal.setAttribute("aria-hidden", "false");
-    imageModalCloseButton.focus();
-  }
-
-  function closeImagePreview() {
-    imageModal.classList.remove("open");
-    imageModal.setAttribute("aria-hidden", "true");
-    imageModalContent.src = "";
-
-    unlockPageScroll();
-  }
-
-  async function copyBibtex() {
-    const bibtexText = bibtexContent.textContent.trim();
-
-    try {
-      await navigator.clipboard.writeText(bibtexText);
-      copyStatus.textContent = "Copied!";
-    } catch {
-      const textarea = document.createElement("textarea");
-
-      textarea.value = bibtexText;
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
-
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textarea);
-
-      copyStatus.textContent = "Copied!";
-    }
-  }
-
-  bibtexButtons.forEach(function(button) {
-    button.addEventListener("click", function() {
-      openBibtex(button);
-    });
-  });
-
-  publicationImages.forEach(function(image) {
-    image.addEventListener("click", function() {
-      openImagePreview(image);
-    });
-  });
-
-  imageModalCloseButton.addEventListener("click", closeImagePreview);
-  imageModalContent.addEventListener("click", closeImagePreview);
-
-  imageModal.addEventListener("click", function(event) {
-    if (event.target === imageModal) {
-      closeImagePreview();
-    }
-  });
-
-  bibtexCloseButton.addEventListener("click", closeBibtex);
-  copyButton.addEventListener("click", copyBibtex);
-
-  bibtexModal.addEventListener("click", function(event) {
-    if (event.target === bibtexModal) {
-      closeBibtex();
-    }
-  });
-
-  document.addEventListener("keydown", function(event) {
-    if (event.key !== "Escape") {
-      return;
-    }
-
-    if (imageModal.classList.contains("open")) {
-      closeImagePreview();
-      return;
-    }
-
-    if (bibtexModal.classList.contains("open")) {
-      closeBibtex();
-    }
-  });
-</script>
-
-</body>
+      document.addEventListener("keydown", event => {
+        if (event.key !== "Escape") return;
+        if (imageModal.classList.contains("open")) closeImagePreview();
+        else if (bibtexModal.classList.contains("open")) closeBibtex();
+      });
+    </script>
+  </body>
 </html>
